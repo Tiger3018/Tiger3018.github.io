@@ -1942,6 +1942,11 @@ pre .javascript .function {
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
+.code {
+  font-family: 'Source Code Pro', Console, monospace;
+  font-weight: 500;
+  tab-size: 4;
+}
 .navbar {
   position: relative;
   padding-top: 3rem;
