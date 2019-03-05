@@ -907,6 +907,9 @@ a.disabled {
 img {
   max-width: 100%;
 }
+p {
+  overflow-y: hidden;
+}
 .article-date,
 .article-category-link,
 .archive-year-wrap .archive-year,
@@ -1941,6 +1944,10 @@ pre .javascript .function {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+}
+.vbefore {
+  margin: 3rem 0 5rem;
+  border-top: 0.1rem #e6e6e6 solid;
 }
 .code {
   font-family: 'Source Code Pro', Console, monospace;
