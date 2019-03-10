@@ -8,14 +8,6 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201902/tools/</loc>
-        <lastmod>+022019-02-18T08:39:45.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://tiger3018.github.io/201902/math-theory/</loc>
         <lastmod>2019-03-05T12:28:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -34,6 +26,14 @@
     <url>
         <loc>https://tiger3018.github.io/201902/FJWC2019-2/</loc>
         <lastmod>2019-02-24T07:08:08.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://tiger3018.github.io/201902/tools/</loc>
+        <lastmod>2019-02-18T08:39:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

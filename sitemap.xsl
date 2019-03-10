@@ -12,12 +12,13 @@
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                 <style type="text/css">
                     body {
-                        font-family: Helvetica, Arial, sans-serif;
-                        font-size: 13px;
-                        color: #545353;
+                        font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+                        font-size: .875rem;
+                        color: #1e3e3f;
                     }
 
                     table {
+                        width: 70vw;
                         border: none;
                         border-collapse: collapse;
                     }
@@ -36,7 +37,8 @@
 
                     #content {
                         margin: 0 auto;
-                        width: 1000px;
+                        width: fit-content;
+                        padding: 1.875rem 0;
                     }
 
                     .expl {
@@ -44,26 +46,26 @@
                         line-height: 1.2em;
                     }
 
-                    .expl a {
+                    /*.expl a {
                         color: #da3114;
                         font-weight: bold;
                     }
 
                     .expl a:visited {
                         color: #da3114;
-                    }
+                    }*/
 
                     a {
-                        color: #000;
+                        color: #127ea9;
                         text-decoration: none;
                     }
 
-                    a:visited {
+                    /*a:visited {
                         color: #777;
-                    }
-
-                    a:hover {
-                        text-decoration: underline;
+                    }*/
+                    
+                    a:hover, tr:hover a {
+                        color: #1594c6 !important;
                     }
 
                     td {
@@ -79,6 +81,14 @@
                     thead th {
                         border-bottom: 1px solid #000;
                         cursor: pointer;
+                    }
+                    h1 {
+                        color: #1e3e3f;
+                        font-size: 2em;
+                    }
+                    body ::selection {
+                        background: #5c6b72;
+                        color: #e6e6e6;
                     }
                 </style>
             </head>
@@ -137,10 +147,10 @@
                             <thead>
                                 <tr>
                                     <th width="75%">URL</th>
-                                    <th title="Index Priority" width="5%">Prio</th>
-                                    <th width="5%">Images</th>
+                                    <th title="Index Priority" width="3%">Prio</th>
+                                    <th width="2%">Images</th>
                                     <th title="Change Frequency" width="5%">Ch. Freq.</th>
-                                    <th title="Last Modification Time" width="10%">Last Mod.</th>
+                                    <th title="Last Modification Time" width="15%">Last Mod.</th>
                                 </tr>
                             </thead>
                             <tbody>
