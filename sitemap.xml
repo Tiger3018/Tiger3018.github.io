@@ -4,12 +4,17 @@
 
     <sitemap>
         <loc>https://tiger3018.github.io/post-sitemap.xml</loc>
-        <lastmod>2019-03-05T12:28:55.000Z</lastmod>
+        <lastmod>2019-03-11T16:10:59.000Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>https://tiger3018.github.io/page-sitemap.xml</loc>
         <lastmod>2019-03-06T15:53:26.000Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://tiger3018.github.io/category-sitemap.xml</loc>
+        <lastmod>2019-03-11T16:10:59.000Z</lastmod>
     </sitemap>
 
     <sitemap>
