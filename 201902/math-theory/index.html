@@ -26,8 +26,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
   <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
-  -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css"><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css'><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+  --><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css'><!-- hexo-inject:end -->
 </head>
 </html>
 <body>
@@ -79,7 +79,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201902/math-theory/" data-id="cjtatw0q00007ybg3nrriz96r" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201902/math-theory/" data-id="cjtausd3z00076pg3pv5lrxjy" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/待完成/">待完成</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统测试/">系统测试</a></li></ul>
 
@@ -224,8 +224,27 @@
   gtag('config', 'UA-135642131-1');
 </script>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,600" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script>
+/*** https://codepen.io/chriscoyier/pen/jXEaKQ ***/
+  const GF_loadFont = (url) => {
+    // the 'fetch' equivalent has caching issues
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        let css = xhr.responseText;
+        css = css.replace(/}/g, 'font-display: swap; }');
+        const head = document.getElementsByTagName('head')[0];
+        const style = document.createElement('style');
+        style.appendChild(document.createTextNode(css));
+        head.appendChild(style);
+      }
+    };
+    xhr.send();
+  }
+GF_loadFont('https://fonts.googleapis.com/css?family=Source+Code+Pro:500,600');
+GF_loadFont('https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>
