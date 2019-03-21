@@ -878,7 +878,7 @@ html {
 }
 body {
   background-color: #fff;
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Noto Sans CN", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font-size: 1.4rem;
   line-height: 1.7;
   color: #1e3e3f;
@@ -1956,24 +1956,18 @@ pre .javascript .function {
 .pace-inactive {
   display: none;
 }
-.gitalk,
-.markdown-body {
-  font-size: 1.4rem !important;
-}
-.gt-container .gt-avatar.gt-comment-avatar img {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-}
-.vbefore {
-  margin: 3rem 0 5rem;
-  border-top: 0.1rem #e6e6e6 solid;
-}
-.code {
-  font-family: 'Source Code Pro', Console, monospace;
+.code,
+code {
+  font-family: 'Source Code Pro', Console, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', monospace;
   font-weight: 500;
   letter-spacing: -0.002rem;
   tab-size: 4;
+}
+code {
+  background-color: #f6f6f6;
+}
+a {
+  transition: color 0.15s linear;
 }
 @font-face {
   font-family: 'Source Code Pro';

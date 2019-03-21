@@ -66,6 +66,67 @@
 
     
       
+        <article id="post-yali-jixun-4" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+
+  <h1 itemprop="name">
+    <a class="article-title" href="/201903/yali-jixun-4/">2019 雅礼省选集训 Day5</a>
+  </h1>
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/201903/yali-jixun-4/" class="article-date">
+  <time datetime="2019-03-21T08:00:19.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OI/">OI</a> / <a class="article-category-link" href="/categories/OI/考试/">考试</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="Exchange"><a href="#Exchange" class="headerlink" title="Exchange"></a>Exchange</h2><blockquote>
+<p>给定长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的序列，需要处理 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span> 次询问，每次询问回答选取区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><msub><mi>L</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>R</mi><mi>i</mi></msub><mo>]</mo></mrow><annotation encoding="application/x-tex">[L_i,R_i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span> 内的严格上升子序列最长长度。<br><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>q</mi><mo>≤</mo><mn>1.5</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">n,q \leq 1.5 \times 10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></p>
+</blockquote>
+<p>平常处理 LIS 问题，有朴素的平方判方案， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \log n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span> 的二分判最长子序列，以及处理正向序列和反向序列的扩展问题。区间查询貌似以前也遇到过但是好像没做出来过==</p>
+<p>那就不如将思路转化一下，朴素动态规划的转移变为树上问题：我们将每个字符向后面出现的第一个严格大于其本身的字符连边，最后该字符深度就是以该字符开始的最长严格上升子序列长度。建树用单调栈。</p>
+        
+          <a class="article-more-link" href="/201903/yali-jixun-4/">阅读更多</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tiger3018.github.io/201903/yali-jixun-4/" data-id="cjtittafm001wh1g3ddewn76t" class="article-share-link">分享文章</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LIS/">LIS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分类讨论/">分类讨论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单调栈/">单调栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线段树/">线段树</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+
+
+      
         <article id="post-yali-jixun-2" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
@@ -74,7 +135,7 @@
         
 
   <h1 itemprop="name">
-    <a class="article-title" href="/201903/yali-jixun-2/">雅礼集训 Day2</a>
+    <a class="article-title" href="/201903/yali-jixun-2/">2019 雅礼省选集训 Day2</a>
   </h1>
 
 
@@ -102,14 +163,14 @@
         <p>今天与爆零擦肩而过，再加上昨天的失误，第一次测试的结果非常不好看。</p>
 <p>其实从最近的比赛开始就有点浮躁，在于思考不完整就开始实现，结果证伪（比如第一题），更要命的应该是先跳过有部分分好实现的题目（比如提交答案），还有时间和效率问题（我一直觉得暴力实现花一小时总是有点多）。结果今天就 0 + 0 + 10</p>
 <p>前几天效率也非常低，没学习什么知识点。（当然这已经是前话了，再提一遍是为了证明这几天都处于一个不适合准备冲刺的状态）</p>
-<p>考虑先易后难想清楚<code>-f</code>的考试策略加上复习知识，回顾原题，开始本周xxx</p>
+<p>考虑先易后难想清楚 <code>-force</code> 的考试策略加上复习知识，回顾原题，开始本周xxx</p>
         
           <a class="article-more-link" href="/201903/yali-jixun-2/">阅读更多</a>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201903/yali-jixun-2/" data-id="cjtfyy98w000eyng3mlkk45ia" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201903/yali-jixun-2/" data-id="cjtittade000eh1g3sko9xrwi" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分图/">二分图</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/提交答案/">提交答案</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/欧拉回路/">欧拉回路</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心/">贪心</a></li></ul>
 
@@ -166,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201903/moon-hc-4/" data-id="cjtfyy98s000cyng38lekg3on" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201903/moon-hc-4/" data-id="cjtittad7000ch1g386nqnfp2" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学推导/">数学推导</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期望动规/">期望动规</a></li></ul>
 
@@ -223,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201903/moon-hc-3/" data-id="cjtfyy98o000byng3gbmwdpmr" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201903/moon-hc-3/" data-id="cjtittad4000bh1g36q0oe6fb" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博弈/">博弈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模型转化/">模型转化</a></li></ul>
 
@@ -284,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201902/FJWC2019-3/" data-id="cjtfyy9b3001vyng347aapuak" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201902/FJWC2019-3/" data-id="cjtittafk001vh1g3nn1kzn97" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/think-twice/">think_twice</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二进制/">二进制</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心/">贪心</a></li></ul>
 
@@ -345,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201902/FJWC2019-2/" data-id="cjtfyy9890006yng3ip7r56y1" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201902/FJWC2019-2/" data-id="cjtittacp0006h1g3qjl95e7h" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/打表/">打表</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树上动规/">树上动规</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模型转化/">模型转化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心/">贪心</a></li></ul>
 
@@ -408,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201902/tools/" data-id="cjtfyy98k000ayng3nnaxm35f" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201902/tools/" data-id="cjtittacz000ah1g3uxp4jeug" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/指南/">指南</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂项/">杂项</a></li></ul>
 
@@ -473,7 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://tiger3018.github.io/201902/math-theory/" data-id="cjtfyy98c0007yng3is7lftbq" class="article-share-link">分享文章</a>
+      <a data-url="https://tiger3018.github.io/201902/math-theory/" data-id="cjtittacs0007h1g3490pnrkh" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/待完成/">待完成</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统测试/">系统测试</a></li></ul>
 
