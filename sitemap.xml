@@ -3,16 +3,6 @@
 
 
     <sitemap>
-        <loc>https://tiger3018.github.io/page-sitemap.xml</loc>
-        <lastmod>2019-03-06T15:53:26.000Z</lastmod>
-    </sitemap>
-
-    <sitemap>
-        <loc>https://tiger3018.github.io/post-sitemap.xml</loc>
-        <lastmod>2019-03-21T15:55:35.000Z</lastmod>
-    </sitemap>
-
-    <sitemap>
         <loc>https://tiger3018.github.io/category-sitemap.xml</loc>
         <lastmod>2019-03-21T15:55:35.000Z</lastmod>
     </sitemap>
@@ -20,6 +10,16 @@
     <sitemap>
         <loc>https://tiger3018.github.io/tag-sitemap.xml</loc>
         <lastmod>2019-03-21T15:55:35.000Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://tiger3018.github.io/page-sitemap.xml</loc>
+        <lastmod>2019-03-27T12:23:05.000Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://tiger3018.github.io/post-sitemap.xml</loc>
+        <lastmod>2019-04-01T16:26:21.000Z</lastmod>
     </sitemap>
 
 </sitemapindex>
