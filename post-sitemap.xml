@@ -2,13 +2,13 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://tiger3018.github.io</loc>
+        <loc>https://blog.tiger3018.tk</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201904/kde-neon/</loc>
+        <loc>https://blog.tiger3018.tk/201904/kde-neon/</loc>
         <lastmod>2019-04-01T16:26:21.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -16,7 +16,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201903/yali-jixun-4/</loc>
+        <loc>https://blog.tiger3018.tk/201903/yali-jixun-4/</loc>
         <lastmod>2019-03-21T15:55:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -24,7 +24,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201903/yali-jixun-2/</loc>
+        <loc>https://blog.tiger3018.tk/201903/yali-jixun-2/</loc>
         <lastmod>2019-03-19T15:31:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -32,7 +32,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201903/moon-hc-4/</loc>
+        <loc>https://blog.tiger3018.tk/201903/moon-hc-4/</loc>
         <lastmod>2019-03-11T16:10:59.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -40,7 +40,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201903/moon-hc-3/</loc>
+        <loc>https://blog.tiger3018.tk/201903/moon-hc-3/</loc>
         <lastmod>2019-03-10T16:16:34.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201902/math-theory/</loc>
+        <loc>https://blog.tiger3018.tk/201902/math-theory/</loc>
         <lastmod>2019-03-05T12:28:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201902/FJWC2019-3/</loc>
+        <loc>https://blog.tiger3018.tk/201902/FJWC2019-3/</loc>
         <lastmod>2019-02-26T13:00:03.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -64,7 +64,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201902/FJWC2019-2/</loc>
+        <loc>https://blog.tiger3018.tk/201902/FJWC2019-2/</loc>
         <lastmod>2019-02-24T07:08:08.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -72,7 +72,7 @@
     </url>
 
     <url>
-        <loc>https://tiger3018.github.io/201902/tools/</loc>
+        <loc>https://blog.tiger3018.tk/201902/tools/</loc>
         <lastmod>2019-02-18T08:39:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
