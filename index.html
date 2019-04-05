@@ -64,67 +64,6 @@
 
     
       
-        <article id="post-LG3527" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-
-  <h1 itemprop="name">
-    <a class="article-title" href="/201904/LG3527/">\[洛谷 3527\]\[BZOJ 2527\]\[POI 2011\] Meteors</a>
-  </h1>
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/201904/LG3527/" class="article-date">
-  <time datetime="2019-04-05T03:46:41.000Z" itemprop="datePublished">2019-04-05</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/OI/">OI</a> / <a class="article-category-link" href="/categories/OI/刷题/">刷题</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>发现好久没做过整体二分了就拿一道模板题刷一下，发现还是遗忘了不少细节。</p>
-<p>（以下内容不保证正确性，欢迎讨论 QAQ ）</p>
-<p>整体二分，在大多数情况下都是指离线处理修改和查询操作，在查询所需答案的维度上进行分治，修改根据选定的维度排序放入左右两区间，查询根据目前得到的答案过大或不大于二分；而在每个区间的具体操作和经典的 CDQ 分治其实并没有太大区别，无非是再将修改和查询按照可能存在的另一维度排序，在修改操作的二分中值点左右维护当前各查询操作答案，套树状数组，事后清零。</p>
-<p>太棒了，然而这道题不是这么做的，要做这样的题貌似得去找第 k 小数。而单纯的询问结果具有单调性和连续性，可以套根号分治结论的题目，有时也被称为整体二分，如 CF 1039 D You Are Given a Tree ，我其实觉得那更像答案分块。</p>
-<p>这个题维护的修改只和答案维度有关，实际上是整体二分的弱化版。这时候只需要将答案维护到修改操作中值点（不一定要全部清空），处理区间各询问情况并二分到左右区间（并不能一开始直接排序），直到修改操作唯一即可。</p>
-<p>Talk is cheap, show you the code.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A code file. By Tiger3018</span></span><br><span class="line"><span class="comment">// Created  Time 2019/04/05 09:06:20</span></span><br><span class="line"><span class="comment">// Last Modified 2019/04/05 11:40:30</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _for(a,b,c) for(int a=(b),a##lim=(c);a&lt;=a##lim;a++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _rof(a,b,c) for(int a=(b),a##lim=(c);a&gt;=a##lim;a--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ferr(...) fprintf(stderr, __VA_ARGS__)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> m, ne[<span class="number">300009</span>], res[<span class="number">300009</span>], qp[<span class="number">300009</span>], q1[<span class="number">300009</span>], q2[<span class="number">300009</span>], now = <span class="number">0</span>;</span><br><span class="line">ll tmp; <span class="comment">// *</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">data</span> &#123;</span><span class="keyword">int</span> l, r, w;&#125; sa[<span class="number">300009</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; lk[<span class="number">300009</span>];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span> &#123;</span></span><br><span class="line">    ll v[<span class="number">300009</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> at, ll val)</span> </span>&#123;<span class="keyword">for</span>(; at &lt;= m; at += at&amp;-at) v[at] += val;&#125;</span><br><span class="line">    <span class="function">ll <span class="title">ask</span><span class="params">(<span class="keyword">int</span> at)</span> </span>&#123;ll res = <span class="number">0</span>; <span class="keyword">for</span>(; at &gt; <span class="number">0</span>; at -= at&amp;-at) res += v[at]; <span class="keyword">return</span> res;&#125;</span><br><span class="line">&#125;BIT;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cha</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sa[i].l &lt;= sa[i].r) &#123;BIT.add(sa[i].l, v * sa[i].w), BIT.add(sa[i].r + <span class="number">1</span>, - v * sa[i].w);&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;BIT.add(<span class="number">1</span>, v * sa[i].w); BIT.add(sa[i].r + <span class="number">1</span>, - v * sa[i].w); BIT.add(sa[i].l, v * sa[i].w);&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> _L, <span class="keyword">int</span> _R, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt; r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> s1 = <span class="number">0</span>, s2 = <span class="number">0</span>, mid = (_L + _R) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(_L == _R) &#123;</span><br><span class="line">        _for(i, l, r) res[qp[i]] = _L;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(now &lt;= mid) cha(++ now, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">while</span>(now &gt; mid) cha(now --, <span class="number">-1</span>);</span><br><span class="line"><span class="comment">//	printf("==%d %d %d | %d %d==\n", _L, mid, _R, l, r);</span></span><br><span class="line"><span class="comment">//	_for(i, 1, m) printf("%d ", BIT.ask(i));</span></span><br><span class="line"><span class="comment">//	printf("\n");</span></span><br><span class="line"><span class="comment">//	_for(i, l, r) printf("%d ", qp[i]);</span></span><br><span class="line"><span class="comment">//	printf("\n");</span></span><br><span class="line">    _for(i, l, r) &#123;</span><br><span class="line">        tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> j : lk[qp[i]]) &#123;</span><br><span class="line">            tmp += BIT.ask(j);</span><br><span class="line"><span class="comment">//		printf("%d ", BIT.ask(j));</span></span><br><span class="line">            <span class="keyword">if</span>(tmp &gt; ne[qp[i]]) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(tmp &gt;= ne[qp[i]]) q1[++ s1] = qp[i];</span><br><span class="line">        <span class="keyword">else</span> q2[++ s2] = qp[i];</span><br><span class="line"><span class="comment">//		printf("\n%d\n", tmp);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//	printf("\n");</span></span><br><span class="line">    _for(i, <span class="number">1</span>, s1) qp[i + l - <span class="number">1</span>] = q1[i];</span><br><span class="line">    _for(i, <span class="number">1</span>, s2) qp[i + l + s1 - <span class="number">1</span>] = q2[i];</span><br><span class="line">    divide(_L, mid, l, l + s1 - <span class="number">1</span>); divide(mid + <span class="number">1</span>, _R, l + s1, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    freopen(<span class="string">"p3527.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"p3527.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line">    <span class="keyword">int</span> n, k, lkt;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    _for(i, <span class="number">1</span>, m) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;lkt), lk[lkt].push_back(i);</span><br><span class="line">    _for(i, <span class="number">1</span>, n) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;ne[i]), qp[i] = i;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">    _for(i, <span class="number">1</span>, k) <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;sa[i].l, &amp;sa[i].r, &amp;sa[i].w);</span><br><span class="line">    sa[k + <span class="number">1</span>].l = sa[k + <span class="number">1</span>].r = m + <span class="number">1</span>;</span><br><span class="line">    divide(<span class="number">1</span>, k + <span class="number">1</span>, <span class="number">1</span>, n);</span><br><span class="line">    _for(i, <span class="number">1</span>, n) <span class="keyword">if</span>(res[i] == k + <span class="number">1</span>) &#123;<span class="built_in">puts</span>(<span class="string">"NIE"</span>);&#125; <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201904/LG3527/" data-id="cju46jsqp000ekzg3vih9ejl7" class="article-share-link">分享文章</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POI/">POI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/整体二分/">整体二分</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-
-
-
-      
         <article id="post-kde-neon" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
@@ -159,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201904/kde-neon/" data-id="cju46jsqs000gkzg3ceo4132w" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201904/kde-neon/" data-id="cju46vvhr000g8mg339cirv6v" class="article-share-link">分享文章</a>
       
     </footer>
 
@@ -218,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201903/yali-jixun-4/" data-id="cju46jsrz0023kzg3dtr8vnzg" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201903/yali-jixun-4/" data-id="cju46vvkg001x8mg35nwpuh5g" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LIS/">LIS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分类讨论/">分类讨论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单调栈/">单调栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线段树/">线段树</a></li></ul>
 
@@ -278,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201903/yali-jixun-2/" data-id="cju46jsqu000ikzg3myielbce" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201903/yali-jixun-2/" data-id="cju46vvhn000e8mg3xnpl6495" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分图/">二分图</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/提交答案/">提交答案</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/欧拉回路/">欧拉回路</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心/">贪心</a></li></ul>
 
@@ -335,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201903/moon-hc-4/" data-id="cju46jsqh000bkzg3f5isu9mr" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201903/moon-hc-4/" data-id="cju46vvhg000c8mg3908lgmfo" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学推导/">数学推导</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期望动规/">期望动规</a></li></ul>
 
@@ -392,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201903/moon-hc-3/" data-id="cju46jsql000ckzg3dx67bs6t" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201903/moon-hc-3/" data-id="cju46vvhc000b8mg3ufucg1ip" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博弈/">博弈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模型转化/">模型转化</a></li></ul>
 
@@ -453,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201902/FJWC2019-3/" data-id="cju46jsrx0022kzg39ww874b5" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201902/FJWC2019-3/" data-id="cju46vvkd001w8mg3burbp3cs" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/think-twice/">think_twice</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二进制/">二进制</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心/">贪心</a></li></ul>
 
@@ -514,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201902/FJWC2019-2/" data-id="cju46jsq10006kzg3uolmwu6c" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201902/FJWC2019-2/" data-id="cju46vvgs00068mg3bk7r24x4" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/打表/">打表</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树上动规/">树上动规</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模型转化/">模型转化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心/">贪心</a></li></ul>
 
@@ -577,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201902/tools/" data-id="cju46jsq40007kzg3jta8yyw8" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201902/tools/" data-id="cju46vvh3000a8mg3izirdtca" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/指南/">指南</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂项/">杂项</a></li></ul>
 
@@ -642,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.tiger3018.tk/201902/math-theory/" data-id="cju46jsqe000akzg3lt7v8wvd" class="article-share-link">分享文章</a>
+      <a data-url="https://blog.tiger3018.tk/201902/math-theory/" data-id="cju46vvgv00078mg3bgr8njjy" class="article-share-link">分享文章</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/待完成/">待完成</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统测试/">系统测试</a></li></ul>
 
