@@ -8,15 +8,22 @@
     </url>
 
     <url>
-        <loc>https://blog.tiger3018.tk/categories/OI/</loc>
+        <loc>https://blog.tiger3018.tk/categories/OI/%E8%80%83%E8%AF%95/</loc>
         <lastmod>2019-03-21T15:55:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.tiger3018.tk/categories/OI/%E8%80%83%E8%AF%95/</loc>
-        <lastmod>2019-03-21T15:55:35.000Z</lastmod>
+        <loc>https://blog.tiger3018.tk/categories/OI/</loc>
+        <lastmod>2019-04-05T14:52:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.tiger3018.tk/categories/OI/%E5%88%B7%E9%A2%98/</loc>
+        <lastmod>2019-04-05T14:52:47.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

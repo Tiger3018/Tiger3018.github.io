@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="POI,整体二分,blog,博客,个人博客,tiger3018,小老虎3018,tech,技术">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    洛谷 3527 / BZOJ 2527 / POI 2011 Meteors |
+    
+    Tiger3018&#39;s Blog</title>
+  
+    <link rel="shortcut icon" href="/images/favicon1.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+  <!--
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><main class="content">
+  <section class="outer">
+  <article id="post-LG3527" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+
+  <h1 class="article-title" itemprop="name">洛谷 3527 / BZOJ 2527 / POI 2011 Meteors</h1>
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/201904/LG3527/" class="article-date">
+  <time datetime="2019-04-05T03:46:41.000Z" itemprop="datePublished">2019-04-05</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OI/">OI</a> / <a class="article-category-link" href="/categories/OI/刷题/">刷题</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>发现好久没做过整体二分了就拿一道模板题刷一下，发现还是遗忘了不少细节。</p>
+<p>（以下内容不保证正确性，欢迎讨论 QAQ ）</p>
+<a id="more"></a>
+<p>整体二分，在大多数情况下都是指离线处理修改和查询操作，在查询所需答案的维度上进行分治，修改根据选定的维度排序放入左右两区间，查询根据目前得到的答案过大或不大于二分；而在每个区间的具体操作和经典的 CDQ 分治其实并没有太大区别，无非是再将修改和查询按照可能存在的另一维度排序，在修改操作的二分中值点左右维护当前各查询操作答案，套树状数组，事后清零。</p>
+<p>太棒了，然而这道题不是这么做的，要做这样的题貌似得去找第 k 小数。而单纯的询问结果具有单调性和连续性，可以套根号分治结论的题目，有时也被称为整体二分，如 CF 1039 D You Are Given a Tree ，我其实觉得那更像答案分块。</p>
+<p>这个题维护的修改只和答案维度有关，实际上是整体二分的弱化版。这时候只需要将答案维护到修改操作中值点（不一定要全部清空），处理区间各询问情况并二分到左右区间（并不能一开始直接排序），直到修改操作唯一即可。</p>
+<p>Talk is cheap, show you the code.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A code file. By Tiger3018</span></span><br><span class="line"><span class="comment">// Created  Time 2019/04/05 09:06:20</span></span><br><span class="line"><span class="comment">// Last Modified 2019/04/05 11:40:30</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _for(a,b,c) for(int a=(b),a##lim=(c);a&lt;=a##lim;a++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _rof(a,b,c) for(int a=(b),a##lim=(c);a&gt;=a##lim;a--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ferr(...) fprintf(stderr, __VA_ARGS__)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> m, ne[<span class="number">300009</span>], res[<span class="number">300009</span>], qp[<span class="number">300009</span>], q1[<span class="number">300009</span>], q2[<span class="number">300009</span>], now = <span class="number">0</span>;</span><br><span class="line">ll tmp; <span class="comment">// *</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">data</span> &#123;</span><span class="keyword">int</span> l, r, w;&#125; sa[<span class="number">300009</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; lk[<span class="number">300009</span>];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span> &#123;</span></span><br><span class="line">    ll v[<span class="number">300009</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> at, ll val)</span> </span>&#123;<span class="keyword">for</span>(; at &lt;= m; at += at&amp;-at) v[at] += val;&#125;</span><br><span class="line">    <span class="function">ll <span class="title">ask</span><span class="params">(<span class="keyword">int</span> at)</span> </span>&#123;ll res = <span class="number">0</span>; <span class="keyword">for</span>(; at &gt; <span class="number">0</span>; at -= at&amp;-at) res += v[at]; <span class="keyword">return</span> res;&#125;</span><br><span class="line">&#125;BIT;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cha</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sa[i].l &lt;= sa[i].r) &#123;BIT.add(sa[i].l, v * sa[i].w), BIT.add(sa[i].r + <span class="number">1</span>, - v * sa[i].w);&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;BIT.add(<span class="number">1</span>, v * sa[i].w); BIT.add(sa[i].r + <span class="number">1</span>, - v * sa[i].w); BIT.add(sa[i].l, v * sa[i].w);&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> _L, <span class="keyword">int</span> _R, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt; r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> s1 = <span class="number">0</span>, s2 = <span class="number">0</span>, mid = (_L + _R) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(_L == _R) &#123;</span><br><span class="line">        _for(i, l, r) res[qp[i]] = _L;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(now &lt;= mid) cha(++ now, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">while</span>(now &gt; mid) cha(now --, <span class="number">-1</span>);</span><br><span class="line"><span class="comment">//	printf("==%d %d %d | %d %d==\n", _L, mid, _R, l, r);</span></span><br><span class="line"><span class="comment">//	_for(i, 1, m) printf("%d ", BIT.ask(i));</span></span><br><span class="line"><span class="comment">//	printf("\n");</span></span><br><span class="line"><span class="comment">//	_for(i, l, r) printf("%d ", qp[i]);</span></span><br><span class="line"><span class="comment">//	printf("\n");</span></span><br><span class="line">    _for(i, l, r) &#123;</span><br><span class="line">        tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> j : lk[qp[i]]) &#123;</span><br><span class="line">            tmp += BIT.ask(j);</span><br><span class="line"><span class="comment">//		printf("%d ", BIT.ask(j));</span></span><br><span class="line">            <span class="keyword">if</span>(tmp &gt; ne[qp[i]]) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(tmp &gt;= ne[qp[i]]) q1[++ s1] = qp[i];</span><br><span class="line">        <span class="keyword">else</span> q2[++ s2] = qp[i];</span><br><span class="line"><span class="comment">//		printf("\n%d\n", tmp);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//	printf("\n");</span></span><br><span class="line">    _for(i, <span class="number">1</span>, s1) qp[i + l - <span class="number">1</span>] = q1[i];</span><br><span class="line">    _for(i, <span class="number">1</span>, s2) qp[i + l + s1 - <span class="number">1</span>] = q2[i];</span><br><span class="line">    divide(_L, mid, l, l + s1 - <span class="number">1</span>); divide(mid + <span class="number">1</span>, _R, l + s1, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></span><br><span class="line">    freopen(<span class="string">"p3527.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"p3527.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// ONLINE_JUDGE</span></span></span><br><span class="line">    <span class="keyword">int</span> n, k, lkt;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    _for(i, <span class="number">1</span>, m) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;lkt), lk[lkt].push_back(i);</span><br><span class="line">    _for(i, <span class="number">1</span>, n) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;ne[i]), qp[i] = i;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">    _for(i, <span class="number">1</span>, k) <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;sa[i].l, &amp;sa[i].r, &amp;sa[i].w);</span><br><span class="line">    sa[k + <span class="number">1</span>].l = sa[k + <span class="number">1</span>].r = m + <span class="number">1</span>;</span><br><span class="line">    divide(<span class="number">1</span>, k + <span class="number">1</span>, <span class="number">1</span>, n);</span><br><span class="line">    _for(i, <span class="number">1</span>, n) <span class="keyword">if</span>(res[i] == k + <span class="number">1</span>) &#123;<span class="built_in">puts</span>(<span class="string">"NIE"</span>);&#125; <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.tiger3018.tk/201904/LG3527/" data-id="cju478j9u000hv5g3gfkv5ie8" class="article-share-link">分享文章</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POI/">POI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/整体二分/">整体二分</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/201904/kde-neon/" class="article-nav-link">
+        <strong class="article-nav-caption">...下一篇</strong>
+        <div class="article-nav-title">KDE neon 折腾记</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+
+    
+  <link rel="stylesheet" type="text/css" href="/css/plugins/valine.css">
+  <div class="vbefore"></div>
+  <div class="valine" id="vcomments"></div>
+
+
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 Tiger3018&#39;s Blog</li>
+      <li>由 <a target="_blank" href="http://hexo.io/">Hexo</a> x <a target="_blank" href="https://zhwangart.github.io">Ocean</a> 强力驱动</li>
+      <!--<li><a target="_blank" href="https://zhwangart.github.io">Ocean by zhwangart</a> 主题</li>-->
+      <li>使用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0">知识共享 署名 相同方式分享 4.0</a> 许可协议</li>
+      <li>使用 <a target="_blank" href="https://analytics.google.com">Google Analytics</a> 统计匿名信息</li>
+      <!--
+      <li><a href="/">Tiger3018</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/head_2.png" alt="Tiger3018&#39;s Blog"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">首页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about/friend.html">友链</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+  <script src="/js/search.js"></script>
+
+
+  
+  
+    <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="https://unpkg.com/valine/dist/Valine.min.js"></script> 
+    <script type="text/javascript">
+      new Valine({
+        el: '#vcomments' ,
+        appId: 'h4xvm9UNQQ4OK4MQnC9ujlAK-gzGzoHsz',
+        appKey: 'qrD14yIgvgp8cVSJMB2E9jhU',
+        notify: false, 
+        verify: false,
+        avatar: 'identicon', 
+        placeholder: '留下你的想法' 
+      });  
+    </script>
+  
+
+<script src="/js/ocean.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135642131-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-135642131-1');
+</script>
+<!-- Google Fonts -->
+<script>
+/*** https://codepen.io/chriscoyier/pen/jXEaKQ ***/
+  const GF_loadFont = (url) => {
+    // the 'fetch' equivalent has caching issues
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        let css = xhr.responseText;
+        css = css.replace(/}/g, 'font-display: swap; }');
+        const head = document.getElementsByTagName('head')[0];
+        const style = document.createElement('style');
+        style.appendChild(document.createTextNode(css));
+        head.appendChild(style);
+      }
+    };
+    xhr.send();
+  }
+GF_loadFont('https://fonts.googleapis.com/css?family=Source+Code+Pro:500,600');
+GF_loadFont('https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
